@@ -10,14 +10,12 @@ if not defined DevEnvDir (
 )
 echo * Building LuaJIT x86...
 %setup_env% x86
-set LJTARGETARCH=x86
-call msvcbuild.bat
+call msvcbuild.bat x86
 if errorlevel 1 goto :fail
 
 echo * Building LuaJIT x64...
 %setup_env% x86_amd64
-set LJTARGETARCH=x64
-call msvcbuild.bat
+call msvcbuild.bat x64
 if errorlevel 1 goto :fail
 
 goto :end
