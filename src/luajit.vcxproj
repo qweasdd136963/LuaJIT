@@ -75,6 +75,22 @@
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeReBuildCommandLine>msvcbuild.bat $(PlatformShortName)</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>del ..\bin\$(PlatformShortName)\luajit.exe</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeReBuildCommandLine>msvcbuild.bat $(PlatformShortName)</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>del ..\bin\$(PlatformShortName)\luajit.exe</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NMakeReBuildCommandLine>msvcbuild.bat $(PlatformShortName)</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>del ..\bin\$(PlatformShortName)\luajit.exe</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NMakeReBuildCommandLine>msvcbuild.bat $(PlatformShortName)</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>del ..\bin\$(PlatformShortName)\luajit.exe</NMakeCleanCommandLine>
+  </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
