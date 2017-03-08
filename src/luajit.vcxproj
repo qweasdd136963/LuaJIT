@@ -66,7 +66,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <NMakeBuildCommandLine>msvcbuild.bat $(PlatformShortName)</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake /F nmake.$(PlatformShortName)</NMakeBuildCommandLine>
     <NMakeOutput>..\bin\$(PlatformShortName)\luajit.exe</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
