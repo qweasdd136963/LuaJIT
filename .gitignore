@@ -1,6 +1,8 @@
+[Bb]in/
 *.[oa]
 *.so
 *.obj
+*.iobj
 *.lib
 *.exp
 *.dll
