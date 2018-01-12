@@ -1,2 +1,4 @@
 minilua
 buildvm
+buildvm_arch_x64.h
+buildvm_arch_x86.h
