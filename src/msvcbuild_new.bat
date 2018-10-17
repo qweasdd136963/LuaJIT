@@ -10,9 +10,8 @@
 @rem     setenv /release /x64
 @rem
 @rem Then cd to this directory and run this script.
-
 @if not defined INCLUDE goto :FAIL
-
+@echo Здесь нужно разобраться с ключами. И добавить поддержку Mixed_COC @Debrovski
 @setlocal
 @set LJCOMPILE=cl /nologo /MP /Zi /c /O2 /W3 /D_CRT_SECURE_NO_DEPRECATE /D_CRT_STDIO_INLINE=__declspec(dllexport)__inline
 @set LJLINK=link /nologo /DEBUG
@@ -22,15 +21,15 @@
 @set DASM=%DASMDIR%\dynasm.lua
 @set LJTARGETARCH=%1
 @set DASC=vm_%LJTARGETARCH%.dasc
-@set LJBINPATH=..\bin\
+@set LJBINPATH=..\..\..\_build\bin\Win64\Release_COC\
 @if defined LJTARGETARCH (
-  @set LJBINPATH=%LJBINPATH%%LJTARGETARCH%\
+  @set LJBINPATH=%LJBINPATH%\
 )
 @if not exist %LJBINPATH% (
   @mkdir %LJBINPATH%
 )
 @set LJDLLNAME=%LJBINPATH%LuaJIT.dll
-@set LJLIBNAME=%LJBINPATH%LuaJIT.lib
+@set LJLIBNAME=..\..\..\_build\lib\Win64\Release_COC\LuaJIT.lib
 @set ALL_LIB=lib_base.c lib_math.c lib_bit.c lib_string.c lib_table.c lib_io.c lib_os.c lib_package.c lib_debug.c lib_jit.c lib_ffi.c
 
 %LJCOMPILE% host\minilua.c
@@ -48,6 +47,7 @@ if exist minilua.exe.manifest^
 @set LJARCH=x86
 :X64
 @set LJCOMPILE=%LJCOMPILE% /DLUAJIT_ENABLE_GC64
+@echo DASM=%DASM% DASMFLAGS=%DASMFLAGS% DASC=%DASC%
 minilua %DASM% -LN %DASMFLAGS% -o host\buildvm_arch.h %DASC%
 @if errorlevel 1 goto :BAD
 

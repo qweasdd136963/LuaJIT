@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release_COC|Win32">
+      <Configuration>Release_COC</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_COC|x64">
+      <Configuration>Release_COC</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -31,17 +39,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <NMakeOutput>..\bin\$(PlatformShortName)\LuaJIT.dll</NMakeOutput>
+    <NMakeOutput>..\..\..\_build\bin\Win64\Release_COC\LuaJIT.dll</NMakeOutput>
     <NMakeBuildCommandLine>
-		if not exist "..\bin\$(PlatformShortName)\LuaJIT.dll" (
-			call msvcbuild_new.bat $(PlatformShortName)
-		)
+		if not exist "..\..\..\_build\bin\Win64\Release_COC\LuaJIT.dll" (
+			call msvcbuild_new.bat x64 amalg		)
 	</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>
-		RD /S/Q ..\bin
-		call msvcbuild_new.bat $(PlatformShortName)
+		RD /S/Q ..\..\..\_build\bin\Win64\Release_COC
+		call msvcbuild_new.bat x64 static
 	</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>RD /S/Q ..\bin</NMakeCleanCommandLine>
+    <NMakeCleanCommandLine>RD /S/Q ..\..\..\_build\bin\Win64\Release_COC</NMakeCleanCommandLine>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
