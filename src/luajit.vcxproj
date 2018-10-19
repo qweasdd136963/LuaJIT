@@ -46,7 +46,7 @@
 	</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>
 		RD /S/Q ..\..\..\_build\bin\Win64\Release_COC
-		call msvcbuild_new.bat x64 static
+		call msvcbuild_new.bat x64 amalg
 	</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>RD /S/Q ..\..\..\_build\bin\Win64\Release_COC</NMakeCleanCommandLine>
   </PropertyGroup>

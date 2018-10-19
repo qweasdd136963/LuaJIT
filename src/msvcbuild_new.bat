@@ -11,10 +11,10 @@
 @rem
 @rem Then cd to this directory and run this script.
 @if not defined INCLUDE goto :FAIL
-@echo Здесь нужно разобраться с ключами. И добавить поддержку Mixed_COC @Debrovski
+@echo Poka ne kompiliruetsa v Mixed_COC. Nujno nastroit @Debrovski
 @setlocal
 @set LJCOMPILE=cl /nologo /MP /Zi /c /O2 /W3 /D_CRT_SECURE_NO_DEPRECATE /D_CRT_STDIO_INLINE=__declspec(dllexport)__inline
-@set LJLINK=link /nologo /DEBUG
+@set LJLINK=link /nologo
 @set LJMT=mt /nologo
 @set LJLIB=lib /nologo /nodefaultlib
 @set DASMDIR=..\dynasm
@@ -93,26 +93,9 @@ buildvm -m folddef -o lj_folddef.h lj_opt_fold.c
 :AMALGDLL
 %LJCOMPILE% /MD /DLUA_BUILD_AS_DLL ljamalg.c
 @if errorlevel 1 goto :BAD
-%LJLINK% /DLL /out:%LJDLLNAME% ljamalg.obj lj_vm.obj
+%LJLINK% /DLL /out:%LJDLLNAME% /IMPLIB:%LJLIBNAME% ljamalg.obj lj_vm.obj
 @if errorlevel 1 goto :BAD
 :MTDLL
-if exist %LJDLLNAME%.manifest^
-  %LJMT% -manifest %LJDLLNAME%.manifest -outputresource:%LJDLLNAME%;2
-
-%LJCOMPILE% luajit.c
-@if errorlevel 1 goto :BAD
-%LJLINK% /out:%LJBINPATH%Lua_JIT.exe luajit.obj %LJLIBNAME%
-@if errorlevel 1 goto :BAD
-if exist %LJBINPATH%Lua_JIT.exe.manifest^
-  %LJMT% -manifest %LJBINPATH%Lua_JIT.exe.manifest -outputresource:%LJBINPATH%Lua_JIT.exe
-
-if not exist %LJBINPATH%lua\*.* (
-	md %LJBINPATH%lua\
-)
-if not exist %LJBINPATH%lua\jit\*.* (
-	md %LJBINPATH%lua\jit\
-)
-copy /Y jit\*.* %LJBINPATH%lua\jit\
 
 @del *.obj *.manifest minilua.exe minilua.exp minilua.lib buildvm.exe buildvm.exp buildvm.lib jit\vmdef.lua
 @del host\buildvm_arch.h
